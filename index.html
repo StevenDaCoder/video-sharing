@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Site</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>MySocial</h1>
+        <nav>
+            <ul>
+                <li><a href="#" id="loginLink">Login</a></li>
+                <li><a href="#" id="signupLink">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="loginSection">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <label for="loginEmail">Email:</label>
+                <input type="email" id="loginEmail" name="email" required>
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword" name="password" required>
+                <button type="submit">Login</button>
+            </form>
+        </section>
+        <section id="signupSection">
+            <h2>Sign Up</h2>
+            <form id="signupForm">
+                <label for="signupUsername">Username:</label>
+                <input type="text" id="signupUsername" name="username" required>
+                <label for="signupEmail">Email:</label>
+                <input type="email" id="signupEmail" name="email" required>
+                <label for="signupPassword">Password:</label>
+                <input type="password" id="signupPassword" name="password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+        </section>
+        <section id="postsSection">
+            <h2>Posts</h2>
+            <form id="postForm">
+                <label for="postContent">What's on your mind?</label>
+                <textarea id="postContent" name="content" required></textarea>
+                <button type="submit">Post</button>
+            </form>
+            <div id="postsList">
+                <!-- Posts will be displayed here -->
+            </div>
+        </section>
+        <section id="videoSection">
+            <h2>Share a Video</h2>
+            <form id="videoForm">
+                <label for="videoTitle">Title:</label>
+                <input type="text" id="videoTitle" name="title" required>
+                <label for="videoUrl">Video URL:</label>
+                <input type="url" id="videoUrl" name="url" required>
+                <button type="submit">Share</button>
+            </form>
+            <div id="videosList">
+                <!-- Videos will be displayed here -->
+            </div>
+        </section>
+    </main>
+    <script src="scripts.js"></script>
+</body>
+</html>
