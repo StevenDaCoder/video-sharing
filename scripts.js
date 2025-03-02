@@ -1,40 +1,73 @@
-document.getElementById('loginLink').addEventListener('click', function() {
-    document.getElementById('loginSection').style.display = 'block';
-    document.getElementById('signupSection').style.display = 'none';
-});
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    const postForm = document.getElementById('postForm');
+    const loginLink = document.getElementById('loginLink');
+    const logoutLink = document.getElementById('logoutLink');
+    const postsSection = document.getElementById('postsSection');
+    
+    let isLoggedIn = false;
 
-document.getElementById('signupLink').addEventListener('click', function() {
-    document.getElementById('signupSection').style.display = 'block';
-    document.getElementById('loginSection').style.display = 'none';
-});
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Handle login logic here
+            isLoggedIn = true;
+            alert('Logged in successfully!');
+            window.location.href = "index.html";
+        });
+    }
 
-document.getElementById('loginForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    // Handle login logic here
-    alert('Logged in successfully!');
-});
+    if (signupForm) {
+        signupForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Handle signup logic here
+            alert('Signed up successfully!');
+            window.location.href = "login.html";
+        });
+    }
 
-document.getElementById('signupForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    // Handle signup logic here
-    alert('Signed up successfully!');
-});
+    if (postForm) {
+        postForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            if (!isLoggedIn) {
+                alert('You must be logged in to post.');
+                window.location.href = "login.html";
+                return;
+            }
+            const content = document.getElementById('postContent').value;
+            const file = document.getElementById('postFile').files[0];
+            const postElement = document.createElement('div');
+            postElement.classList.add('post');
+            postElement.innerHTML = `<p>${content}</p>`;
+            if (file) {
+                const fileElement = document.createElement('p');
+                fileElement.innerHTML = `File: ${file.name}`;
+                postElement.appendChild(fileElement);
+            }
+            document.getElementById('postsList').appendChild(postElement);
+            postForm.reset();
+        });
+    }
 
-document.getElementById('postForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const content = document.getElementById('postContent').value;
-    const postElement = document.createElement('div');
-    postElement.textContent = content;
-    document.getElementById('postsList').appendChild(postElement);
-    document.getElementById('postForm').reset();
-});
+    if (logoutLink) {
+        logoutLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            isLoggedIn = false;
+            alert('Logged out successfully!');
+            window.location.href = "index.html";
+        });
+    }
 
-document.getElementById('videoForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const title = document.getElementById('videoTitle').value;
-    const url = document.getElementById('videoUrl').value;
-    const videoElement = document.createElement('div');
-    videoElement.innerHTML = `<h3>${title}</h3><video src="${url}" controls></video>`;
-    document.getElementById('videosList').appendChild(videoElement);
-    document.getElementById('videoForm').reset();
+    if (window.location.pathname.endsWith('index.html')) {
+        if (isLoggedIn) {
+            postsSection.style.display = 'block';
+            loginLink.style.display = 'none';
+            logoutLink.style.display = 'block';
+        } else {
+            postsSection.style.display = 'none';
+            loginLink.style.display = 'block';
+            logoutLink.style.display = 'none';
+        }
+    }
 });
