@@ -1,2 +1,2 @@
 # video-sharing
-Share Videos! (Work In Progress)
+Share Videos! (abandoned)
